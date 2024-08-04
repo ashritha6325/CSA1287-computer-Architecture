@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+    // Declare a double precision variable
+    double num1 = 3.14159265358979323846;
+    double num2 = 1.234567890123456789;
+
+    // Print the double precision variables
+    printf("Number 1: %.15f\n", num1);
+    printf("Number 2: %.15f\n", num2);
+
+    // Perform some calculations
+    double result = num1 * num2;
+
+    // Print the result with high precision
+    printf("Result: %.15f\n", result);
+
+    return 0;
+}
