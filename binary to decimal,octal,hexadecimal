@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// Function to convert binary to decimal
+int binaryToDecimal(char binary[]) {
+    int decimal = 0;
+    int length = strlen(binary);
+
+    for (int i = 0; i < length; i++) {
+        if (binary[length - i - 1] == '1') {
+            decimal += pow(2, i);
+        }
+    }
+
+    return decimal;
+}
+
+// Function to convert decimal to octal
+void decimalToOctal(int decimal) {
+    int octalNum[32];
+    int i = 0;
+
+    while (decimal != 0) {
+        octalNum[i] = decimal % 8;
+        decimal = decimal / 8;
+        i++;
+    }
+
+    printf("Octal representation: ");
+    for (int j = i - 1; j >= 0; j--)
+        printf("%d", octalNum[j]);
+    printf("\n");
+}
+
+// Function to convert decimal to hexadecimal
+void decimalToHexadecimal(int decimal) {
+    char hexaDeciNum[32];
+    int i = 0;
+
+    while (decimal != 0) {
+        int temp = 0;
+        temp = decimal % 16;
+
+        if (temp < 10) {
+            hexaDeciNum[i] = temp + 48;
+        } else {
+            hexaDeciNum[i] = temp + 55;
+        }
+
+        decimal = decimal / 16;
+        i++;
+    }
+
+    printf("Hexadecimal representation: ");
+    for (int j = i - 1; j >= 0; j--)
+        printf("%c", hexaDeciNum[j]);
+    printf("\n");
+}
+
+int main() {
+    char binary[32];
+
+    printf("Enter a binary number: ");
+    scanf("%s", binary);
+
+    int decimal = binaryToDecimal(binary);
+    printf("Decimal representation: %d\n", decimal);
+
+    decimalToOctal(decimal);
+    decimalToHexadecimal(decimal);
+
+    return 0;
+}
