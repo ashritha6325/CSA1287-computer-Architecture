@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <math.h>
+void printFloatBits(float f) {
+    uint32_t *p = (uint32_t*)&f;
+    printf("Sign: %u\n", (*p >> 31) & 1);
+    printf("Exponent: %u\n", (*p >> 23) & 0xFF);
+    printf("Fraction (Mantissa): %u\n", *p & 0x7FFFFF);
+}
+int main() {
+    float number = 3.14; 
+    printf("Number: %f\n", number);  
+    printFloatBits(number);
+    return 0;
+}
+
