@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main() {
+    int a, b;
+    int product, quotient;
+    printf("Enter two integers: ");
+    scanf("%d %d", &a, &b);
+    product = a * b;
+    if (b != 0) {
+        quotient = a / b;
+    } else {
+        printf("Error: Division by zero is not allowed.\n");
+        return 1; 
+    }
+    printf("Product of %d and %d is: %d\n", a, b, product);
+    printf("Quotient of %d divided by %d is: %d\n", a, b, quotient);
+    return 0;
+}
