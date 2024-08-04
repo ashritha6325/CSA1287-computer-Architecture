@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+// Function to convert hexadecimal to decimal
+int hexadecimalToDecimal(char hex[]) {
+    int len = strlen(hex);
+    int base = 1; // base of hexadecimal
+    int decimal = 0;
+
+    for (int i = len - 1; i >= 0; i--) {
+        if (hex[i] >= '0' && hex[i] <= '9') {
+            decimal += (hex[i] - '0') * base;
+            base *= 16;
+        } else if (hex[i] >= 'A' && hex[i] <= 'F') {
+            decimal += (hex[i] - 'A' + 10) * base;
+            base *= 16;
+        } else if (hex[i] >= 'a' && hex[i] <= 'f') {
+            decimal += (hex[i] - 'a' + 10) * base;
+            base *= 16;
+        }
+    }
+
+    return decimal;
+}
+
+// Function to convert decimal to binary
+void decimalToBinary(int decimal, char *binary) {
+    int i = 0;
+    while (decimal > 0) {
+        binary[i] = (decimal % 2) + '0';
+        decimal /= 2;
+        i++;
+    }
+    binary[i] = '\0';
+    // Reverse the binary string
+    for (int j = 0; j < i / 2; j++) {
+        char temp = binary[j];
+        binary[j] = binary[i - j - 1];
+        binary[i - j - 1] = temp;
+    }
+}
+
+// Function to convert decimal to octal
+void decimalToOctal(int decimal, char *octal) {
+    int i = 0;
+    while (decimal > 0) {
+        octal[i] = (decimal % 8) + '0';
+        decimal /= 8;
+        i++;
+    }
+    octal[i] = '\0';
+    // Reverse the octal string
+    for (int j = 0; j < i / 2; j++) {
+        char temp = octal[j];
+        octal[j] = octal[i - j - 1];
+        octal[i - j - 1] = temp;
+    }
+}
+
+int main() {
+    char hex[32];
+    char binary[128] = {0}, octal[32] = {0};
+    
+    printf("Enter a hexadecimal number: ");
+    scanf("%s", hex);
+    
+    int decimal = hexadecimalToDecimal(hex);
+    decimalToBinary(decimal, binary);
+    decimalToOctal(decimal, octal);
+    
+    printf("Hexadecimal: %s\n", hex);
+    printf("Decimal: %d\n", decimal);
+    printf("Binary: %s\n", binary);
+    printf("Octal: %s\n", octal);
+    
+    return 0;
+}
